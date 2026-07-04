@@ -1,0 +1,527 @@
+/* =========================================================
+   FACULTY SITE — DESIGN SYSTEM
+   Palette:  paper #F3EEE2 · ink #1F2733 · navy #16233F
+             oxblood #7A2E2A · brass #A6812E · rule #D9D0BB
+   Type:     Libre Caslon Display (headings) · Source Serif 4 (body)
+             IBM Plex Mono (labels, course codes, dates)
+   Signature: margin sidenotes — scholarly marginalia rendered
+              as a live layout device, not a footnote afterthought.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --paper: #F3EEE2;
+  --paper-dim: #ECE5D4;
+  --ink: #1F2733;
+  --navy: #16233F;
+  --oxblood: #7A2E2A;
+  --brass: #A6812E;
+  --rule: #D9D0BB;
+  --rule-soft: #E4DCC7;
+
+  --display: 'Libre Caslon Display', Georgia, serif;
+  --text-italic: 'Libre Caslon Text', Georgia, serif;
+  --body: 'Source Serif 4', Georgia, serif;
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --measure: 42em;
+  --page-max: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(22,35,63,0.05) 1px, transparent 0);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--brass); color: var(--paper); }
+
+a {
+  color: var(--oxblood);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--navy); }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  position: relative;
+  border-bottom: 3px double var(--navy);
+  padding: 3rem 1.5rem 1.75rem;
+  text-align: center;
+  background: linear-gradient(var(--paper-dim), var(--paper));
+}
+
+.masthead::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--navy) 0 33%, var(--oxblood) 33% 66%, var(--brass) 66% 100%);
+}
+
+.crest {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 1.1rem;
+  display: block;
+}
+
+.masthead .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 0.9rem;
+}
+
+.masthead h1 {
+  font-family: var(--display);
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 400;
+  color: var(--navy);
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.01em;
+}
+
+.masthead .subtitle {
+  font-family: var(--text-italic);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  opacity: 0.75;
+  margin: 0;
+}
+
+nav.contents {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.8rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+nav.contents a {
+  color: var(--navy);
+  text-decoration: none;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+nav.contents a:hover {
+  color: var(--oxblood);
+  border-color: var(--rule);
+}
+nav.contents a[aria-current="page"] {
+  color: var(--paper);
+  background: var(--navy);
+  font-weight: 500;
+}
+
+/* ---------- Page shell with margin column for sidenotes ---------- */
+
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 6rem;
+  display: grid;
+  grid-template-columns: 1fr min(var(--measure), 100%) 1fr;
+}
+
+.page > * { grid-column: 2; }
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.page-header .kicker {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.page-header h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  color: var(--navy);
+  margin: 0 0 0.6rem;
+}
+
+.page-header .dek {
+  font-family: var(--text-italic);
+  font-style: italic;
+  color: var(--ink);
+  opacity: 0.8;
+  font-size: 1.05rem;
+  max-width: 34em;
+}
+
+hr.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+/* drop cap for the opening paragraph */
+p.lede::first-letter {
+  font-family: var(--display);
+  font-size: 3.4rem;
+  float: left;
+  line-height: 0.82;
+  padding-right: 0.12em;
+  padding-top: 0.05em;
+  color: var(--navy);
+}
+
+/* Homepage hero thesis — oversized mark behind the opening statement */
+.hero {
+  position: relative;
+  padding: 0.5rem 0 1rem;
+}
+
+.hero::before {
+  content: "\201C";
+  position: absolute;
+  top: -3.2rem;
+  left: -1.2rem;
+  font-family: var(--display);
+  font-size: 9rem;
+  color: var(--brass);
+  opacity: 0.16;
+  line-height: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero .lede {
+  position: relative;
+  z-index: 1;
+  font-size: 1.18rem;
+}
+
+@media (max-width: 640px) {
+  .hero::before { font-size: 6rem; top: -2.2rem; left: -0.4rem; }
+}
+
+/* ---------- Sidenotes (signature device) ---------- */
+
+.sidenote-number {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  vertical-align: super;
+  color: var(--oxblood);
+  cursor: default;
+}
+
+.sidenote {
+  float: right;
+  clear: right;
+  width: 15rem;
+  margin-right: -18.5rem;
+  margin-top: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--ink);
+  opacity: 0.85;
+  border-left: 2px solid var(--brass);
+  padding-left: 0.85rem;
+}
+
+.sidenote::before {
+  content: attr(data-number);
+  color: var(--oxblood);
+  margin-right: 0.35em;
+}
+
+/* Below the width where a true margin exists, sidenotes
+   become inline endnotes so nothing is ever lost. */
+@media (max-width: 1180px) {
+  .sidenote {
+    float: none;
+    width: auto;
+    margin: 0.9rem 0 1.2rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--paper-dim);
+    border-left: 3px solid var(--brass);
+    border-radius: 0 3px 3px 0;
+  }
+}
+
+/* ---------- Cards (teaching / research listings) ---------- */
+
+.entry {
+  padding: 1.5rem 1.5rem 1.5rem 1.4rem;
+  margin-bottom: 1.1rem;
+  background: var(--paper-dim);
+  border-left: 3px solid var(--rule);
+  border-radius: 0 4px 4px 0;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.entry:hover {
+  border-left-color: var(--oxblood);
+  transform: translateX(2px);
+  box-shadow: 0 4px 14px rgba(22,35,63,0.08);
+}
+.entry:first-of-type { padding-top: 1.5rem; }
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.entry-head h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--navy);
+  margin: 0;
+}
+
+.entry-code {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--brass);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0.6;
+  margin: 0.3rem 0 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.entry p { margin: 0.4rem 0 0; }
+
+.tag-row {
+  margin-top: 0.7rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  border: 1px solid var(--rule);
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+}
+
+/* ---------- Pillars (about page — three practices) ---------- */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin: 2.5rem 0;
+}
+
+.pillar {
+  background: var(--paper-dim);
+  border-top: 3px solid var(--navy);
+  border-radius: 0 0 4px 4px;
+  padding: 1.6rem 1.4rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(22,35,63,0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(22,35,63,0.1);
+}
+.pillar:nth-child(2) { border-top-color: var(--oxblood); }
+.pillar:nth-child(3) { border-top-color: var(--brass); }
+
+.pillar .medallion {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+  background: var(--navy);
+  color: var(--paper);
+  font-family: var(--display);
+  font-size: 1.05rem;
+}
+.pillar:nth-child(2) .medallion { background: var(--oxblood); }
+.pillar:nth-child(3) .medallion { background: var(--brass); }
+
+.pillar h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin: 0 0 0.5rem;
+}
+
+.pillar p {
+  font-size: 0.96rem;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .pillars { grid-template-columns: 1fr; }
+}
+
+/* ---------- CV table blocks ---------- */
+
+.cv-block { margin-bottom: 2.2rem; }
+
+.cv-block h3 {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--oxblood);
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 2px;
+  margin-bottom: 1.2rem;
+}
+
+.cv-block .cv-rows {
+  position: relative;
+  padding-left: 1.6rem;
+  border-left: 2px solid var(--rule);
+}
+
+.cv-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1rem;
+  padding: 0.55rem 0 0.55rem 1rem;
+  font-size: 0.98rem;
+}
+
+.cv-row::before {
+  content: "";
+  position: absolute;
+  left: -1.7rem;
+  top: 1rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brass);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.cv-row .when {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink);
+  opacity: 0.6;
+  padding-top: 0.15rem;
+}
+
+.cv-row .what strong { color: var(--navy); }
+.cv-row .what span.detail {
+  display: block;
+  font-size: 0.88rem;
+  opacity: 0.75;
+}
+
+/* ---------- Buttons / CTA ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--navy);
+  padding: 0.75rem 1.4rem;
+  border: 1px solid var(--navy);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn:hover { background: var(--oxblood); border-color: var(--oxblood); color: var(--paper); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+}
+.btn-outline:hover { background: var(--navy); color: var(--paper); }
+
+/* ---------- Footer ---------- */
+
+footer.colophon {
+  border-top: 3px double var(--navy);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+footer.colophon a { color: var(--ink); }
+
+/* ---------- Utility ---------- */
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+}
+.contact-list li { padding: 0.3rem 0; }
+.contact-list .label {
+  color: var(--brass);
+  display: inline-block;
+  width: 6rem;
+}
